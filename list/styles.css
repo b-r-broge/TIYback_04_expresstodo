@@ -1,0 +1,16 @@
+*, :before, :after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+form {
+  display: inline;
+}
+
+body {
+  display: flex;
+  min-width: 100vw;
+  justify-content: space-around;
+  padding: 50px;
+}
