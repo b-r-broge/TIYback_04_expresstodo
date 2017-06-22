@@ -14,3 +14,8 @@ body {
   justify-content: space-around;
   padding: 50px;
 }
+
+.todo li {
+  display: flex;
+  justify-content: space-between;
+}

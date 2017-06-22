@@ -14,7 +14,7 @@
       </form>
       <ul>
         {{#todo}}
-        <li>{{.}}
+        <li><span>{{.}}</span>
           <form action="/remove" method="post">
             <button type="submit" name="doneItem" value="{{.}}">X</button>
           </form>
