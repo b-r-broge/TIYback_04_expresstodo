@@ -38,6 +38,46 @@ app.post('/add', function(req, res) {
   });
 });
 
+app.post('/edit', function(req, res) {
+  console.log('edit item', req.body.edit);
+  todo.update({
+    todo: req.body.todo,
+    description: req.body.description
+  }, {where: {
+    id: req.body.edit
+  }}).then(function(doneItem) {
+    console.log('editing item');
+    // console.log(doneItem);
+    res.redirect('/list');
+  });
+});
+
+app.post('/delete', function(req, res) {
+  console.log('delete item', req.body.deleteId);
+  todo.destroy({
+    where: {
+      id: req.body.deleteId
+    }
+  }).then(function(deletedItem) {
+    console.log('item deleted');
+    res.redirect('/list');
+  })
+});
+
+app.post('/clearDone', function(req, res) {
+  console.log('delete all done items');
+  todo.destroy({
+    where: {
+      completed_at: {
+        $ne: null
+      }
+    }
+  }).then(function(allGone) {
+    console.log('all done items deleted');
+    res.redirect('/list');
+  })
+})
+
 app.post('/remove', function(req, res) {
   console.log('removing item', req.body.doneId);
   // console.log(req.body);

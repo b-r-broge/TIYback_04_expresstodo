@@ -17,11 +17,18 @@
         {{#todolist}}
         {{#dataValues}}
         {{^completed_at}}
-        <li><span>{{todo}}</span>
-          <span>{{description}}</span>
-          <span>{{created_at}}</span>
+        <li>
+          <form action="/edit" method="post">
+            <input type="text" name="todo" value="{{todo}}">
+            <input type="text" name="description" value="{{description}}">
+            <span>{{created_at}}</span>
+            <button type="submit" name="edit" value="{{id}}">Edit</button>
+          </form>
           <form action="/remove" method="post">
-            <button type="submit" name="doneId" value="{{id}}">X</button>
+            <button type="submit" name="doneId" value="{{id}}">Done</button>
+          </form>
+          <form action="/delete" method="post">
+            <button type="submit" name="deleteId" value="{{id}}">Delete</button>
           </form>
         </li>
         {{/completed_at}}
@@ -31,6 +38,9 @@
     </div>
     <div class="done">
       <h3>Complete:</h3>
+      <form class="" action="/clearDone" method="post">
+        <button type="submit" name="clearDone">Delete Done</button>
+      </form>
       <ul>
         {{#todolist}}
         {{#dataValues}}
