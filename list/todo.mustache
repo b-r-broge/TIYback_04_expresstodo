@@ -10,24 +10,35 @@
       <h3>TODO:</h3>
       <form class="" action="/add" method="post">
         <input type="text" name="newItem" value="" placeholder="Add todo here">
+        <textarea name="description" rows="1" cols="40" placeholder="Add description here"></textarea>
         <button type="submit" name="button">Add</button>
       </form>
       <ul>
-        {{#todo}}
-        <li><span>{{.}}</span>
+        {{#todolist}}
+        {{#dataValues}}
+        {{^completed_at}}
+        <li><span>{{todo}}</span>
+          <span>{{description}}</span>
+          <span>{{created_at}}</span>
           <form action="/remove" method="post">
-            <button type="submit" name="doneItem" value="{{.}}">X</button>
+            <button type="submit" name="doneId" value="{{id}}">X</button>
           </form>
         </li>
-        {{/todo}}
+        {{/completed_at}}
+        {{/dataValues}}
+        {{/todolist}}
       </ul>
     </div>
     <div class="done">
       <h3>Complete:</h3>
       <ul>
-        {{#todone}}
-        <s><li>{{.}}</li></s>
-        {{/todone}}
+        {{#todolist}}
+        {{#dataValues}}
+        {{#completed_at}}
+        <s><li>{{todo}}</li></s>
+        {{/completed_at}}
+        {{/dataValues}}
+        {{/todolist}}
       </ul>
     </div>
   </body>
